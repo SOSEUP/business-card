@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Card - Hailey Seo</title>
+    <style>
+        :root {
+            --brand-color: #5BA4E6;
+            --bg-gray: #F4F7F9;
+        }
+        body {
+            font-family: 'Pretendard', -apple-system, sans-serif;
+            background-color: var(--bg-gray);
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .card-container {
+            background: white;
+            width: 90%;
+            max-width: 360px;
+            border-radius: 24px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+            position: relative;
+        }
+        /* 언어 선택 버튼 스타일 */
+        .lang-selector {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            padding: 20px 0 10px;
+        }
+        .lang-btn {
+            border: 1px solid #ddd;
+            background: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .lang-btn.active {
+            background: var(--brand-color);
+            color: white;
+            border-color: var(--brand-color);
+        }
+        .content-padding {
+            padding: 20px 25px 40px;
+            text-align: center;
+        }
+        .profile-pic {
+            width: 90px;
+            height: 90px;
+            background: #eef2f5;
+            border-radius: 50%;
+            margin: 0 auto 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            color: #aaa;
+            border: 3px solid white;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+        .name { font-size: 24px; font-weight: 700; margin: 0; color: #222; }
+        .company { font-size: 16px; color: var(--brand-color); font-weight: 600; margin: 5px 0 20px; }
+        
+        .description-box {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 15px;
+            margin-bottom: 25px;
+            min-height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .description { font-size: 14px; color: #555; line-height: 1.5; margin: 0; }
+
+        .btn-list { display: flex; flex-direction: column; gap: 10px; }
+        .action-btn {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            background: #fff;
+            border: 1px solid #eee;
+            border-radius: 12px;
+            text-decoration: none;
+            color: #333;
+            font-size: 14px;
+            transition: 0.2s;
+        }
+        .action-btn:active { background: #f0f0f0; transform: scale(0.98); }
+        .icon { margin-right: 12px; font-size: 18px; }
+    </style>
+</head>
+<body>
+
+<div class="card-container">
+    <div class="lang-selector">
+        <button class="lang-btn active" onclick="changeLang('ko', this)">KR</button>
+        <button class="lang-btn" onclick="changeLang('en', this)">EN</button>
+        <button class="lang-btn" onclick="changeLang('vi', this)">VN</button>
+    </div>
+
+    <div class="content-padding">
+        <div class="profile-pic">PHOTO</div>
+        
+        <p class="name" id="name">서해주</p>
+        <p class="company" id="company">소중한습관 (SOSEUP)</p>
+        
+        <div class="description-box">
+            <p class="description" id="desc">영유아를 위한 비건 더마 스킨케어 브랜드</p>
+        </div>
+
+        <div class="btn-list">
+            <a href="tel:+821076342407" class="action-btn">
+                <span class="icon">📞</span> +82 10-7634-2407
+            </a>
+            <a href="mailto:hailey.seo@synergies.kr" class="action-btn">
+                <span class="icon">✉️</span> hailey.seo@synergies.kr
+            </a>
+            <div class="action-btn" style="justify-content: center; background: #222; color: white;">
+                <span id="saveBtn">연락처 저장</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    const data = {
+        ko: {
+            name: "서해주",
+            company: "소중한습관 (SOSEUP)",
+            desc: "🌱 영유아를 위한 비건 더마 스킨케어 브랜드",
+            save: "연락처 저장"
+        },
+        en: {
+            name: "Hailey Seo",
+            company: "SOSEUP",
+            desc: "✨ Vegan Derma Skincare Brand for Infants & Toddlers",
+            save: "Save Contact"
+        },
+        vi: {
+            name: "Hailey Seo",
+            company: "SOSEUP",
+            desc: "🍼 Thương hiệu dược mỹ phẩm thuần chay cho trẻ sơ sinh và trẻ nhỏ",
+            save: "Lưu liên hệ"
+        }
+    };
+
+    function changeLang(lang, btn) {
+        // 버튼 활성화 상태 변경
+        document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        // 텍스트 변경 애니메이션 효과 (살짝 투명해졌다가 나타남)
+        const elements = ['name', 'company', 'desc', 'saveBtn'];
+        elements.forEach(id => {
+            const el = document.getElementById(id);
+            el.style.opacity = 0;
+            setTimeout(() => {
+                if(id === 'saveBtn') el.innerText = data[lang].save;
+                else el.innerText = data[lang][id];
+                el.style.opacity = 1;
+            }, 150);
+        });
+    }
+</script>
+
+</body>
+</html>
