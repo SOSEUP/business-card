@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Business Card - Hailey Seo</title>
+    <style>
+        :root {
+            --point-color: #87CEEB; /* 하늘색 */
+            --text-dark: #333;
+            --text-gray: #666;
+            --bg-light: #f5f7fa;
+        }
+        body { font-family: 'Pretendard', -apple-system, sans-serif; margin: 0; padding: 0; background-color: var(--bg-light); display: flex; justify-content: center; align-items: center; min-height: 100vh; }
+        .card { width: 90%; max-width: 400px; background: #fff; border-radius: 24px; box-shadow: 0 15px 35px rgba(0,0,0,0.1); overflow: hidden; padding-bottom: 30px; }
+        .header { background: var(--point-color); height: 100px; position: relative; }
+        .profile-area { text-align: center; margin-top: -50px; }
+        .profile-img { width: 100px; height: 100px; background: #fff; border: 4px solid #fff; border-radius: 50%; display: inline-block; box-shadow: 0 4px 15px rgba(0,0,0,0.1); overflow: hidden; }
+        .profile-img img { width: 100%; height: 100%; object-fit: cover; }
+        
+        .lang-btns { display: flex; justify-content: center; gap: 8px; margin: 20px 0; }
+        .lang-btns button { border: 1.5px solid var(--point-color); background: #fff; color: var(--point-color); padding: 6px 15px; border-radius: 20px; cursor: pointer; font-size: 13px; font-weight: 600; transition: 0.3s; }
+        .lang-btns button.active { background: var(--point-color); color: #fff; }
+
+        .content { padding: 0 25px; text-align: center; }
+        .content h1 { font-size: 22px; margin: 10px 0 5px; color: var(--text-dark); }
+        .content .team { font-size: 14px; color: var(--point-color); font-weight: 700; margin-bottom: 20px; letter-spacing: -0.5px; }
+        
+        .intro-box { background: #f8fbff; padding: 18px; border-radius: 12px; font-size: 13px; line-height: 1.6; color: var(--text-gray); margin-bottom: 25px; word-break: keep-all; border: 1px solid #edf4ff; }
+        
+        .info-list { text-align: left; margin-bottom: 25px; background: #fff; }
+        .info-item { display: flex; align-items: center; margin-bottom: 15px; font-size: 14px; text-decoration: none; color: var(--text-dark); padding: 5px 0; border-bottom: 1px solid #f0f0f0; }
+        .info-item i { margin-right: 12px; font-style: normal; font-size: 16px; width: 20px; text-align: center; }
+
+        .action-btns { display: flex; flex-direction: column; gap: 10px; }
+        .btn { display: block; padding: 14px; border-radius: 12px; text-decoration: none; font-weight: 600; font-size: 14px; transition: 0.3s; text-align: center; }
+        .btn-primary { background: var(--point-color); color: #fff; box-shadow: 0 4px 10px rgba(135, 206, 235, 0.3); }
+        .btn-outline { border: 1px solid #ddd; color: var(--text-gray); }
+        .btn:active { transform: scale(0.98); }
+        
+        .lang-content { display: none; }
+        .lang-content.active { display: block; }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <div class="header"></div>
+    <div class="profile-area">
+        <div class="profile-img">
+            <div style="line-height:100px; font-size:40px;">🌿</div>
+        </div>
+    </div>
+
+    <div class="lang-btns">
+        <button onclick="showLang('ko')" id="btn-ko" class="active">KR</button>
+        <button onclick="showLang('en')" id="btn-en">EN</button>
+        <button onclick="showLang('vi')" id="btn-vi">VN</button>
+    </div>
+
+    <div class="content">
+        <div id="ko" class="lang-content active">
+            <h1>서해주 / Hailey Seo</h1>
+            <p class="team">소중한습관<br>Commercial & Marketing · Planner</p>
+            <div class="intro-box">
+                소중한 우리 가족을 위해, 100% 자연유래 성분만 사용하는 비건 더마 코스메틱 브랜드 소중한습관🌿<br>
+                🐢느리지만 꾸준하고 깊이 있게 건강을 연구합니다🐇
+            </div>
+        </div>
+
+        <div id="en" class="lang-content">
+            <h1>Hailey Seo</h1>
+            <p class="team">SOSEUP<br>Commercial & Marketing · Planner</p>
+            <div class="intro-box">
+                A vegan dermo-cosmetic brand using 100% naturally derived ingredients for our precious families, SOSEUP🌿<br>
+                🐢Researching health slowly but steadily and deeply🐇
+            </div>
+        </div>
+
+        <div id="vi" class="lang-content">
+            <h1>Hailey Seo</h1>
+            <p class="team">SOSEUP<br>Commercial & Marketing · Planner</p>
+            <div class="intro-box">
+                Thương hiệu mỹ phẩm thuần chay SOSEUP sử dụng 100% thành phần nguồn gốc tự nhiên vì sức khỏe gia đình🌿<br>
+                🐢Nghiên cứu sức khỏe một cách chậm rãi nhưng kiên trì và sâu sắc🐇
+            </div>
+        </div>
+
+        <div class="info-list">
+            <a href="tel:01076342407" class="info-item" id="phone-display"><i>📞</i> <span id="phone-text">010-7634-2407</span></a>
+            <a href="mailto:hailey.seo@synergies.kr" class="info-item"><i>📧</i> hailey.seo@synergies.kr</a>
+            <a href="https://soseup.com" target="_blank" class="info-item"><i>🌐</i> www.soseup.com</a>
+        </div>
+
+        <div class="action-btns">
+            <a href="https://soseup.com" target="_blank" class="btn btn-primary" id="home-btn">홈페이지 바로가기</a>
+            <a href="https://www.instagram.com/soseup_official" target="_blank" class="btn btn-outline">Instagram</a>
+        </div>
+    </div>
+</div>
+
+<script>
+    function showLang(lang) {
+        // 모든 내용 숨기기
+        document.querySelectorAll('.lang-content').forEach(el => el.classList.remove('active'));
+        document.querySelectorAll('.lang-btns button').forEach(el => el.classList.remove('active'));
+        
+        // 선택한 언어 활성화
+        document.getElementById(lang).classList.add('active');
+        document.getElementById('btn-' + lang).classList.add('active');
+
+        // 전화번호 및 버튼 텍스트 변경
+        const phoneText = document.getElementById('phone-text');
+        const homeBtn = document.getElementById('home-btn');
+
+        if (lang === 'ko') {
+            phoneText.innerText = "010-7634-2407";
+            homeBtn.innerText = "홈페이지 바로가기";
+        } else if (lang === 'en') {
+            phoneText.innerText = "+82 10-7634-2407";
+            homeBtn.innerText = "Visit Website";
+        } else {
+            phoneText.innerText = "+82 10-7634-2407";
+            homeBtn.innerText = "Truy cập trang web";
+        }
+    }
+</script>
+
+</body>
+</html>
